@@ -1,0 +1,34 @@
+<meta charset="utf-8">
+<h1>Calculadora</h1>
+
+<script>
+    let halfChestCm = parseInt(prompt('Informe a metade da circunferência do busto:').replace(',', '.'));
+    let halfNeckCm = parseInt(prompt('Informe a metade da circunferência do pescoço:').replace(',', '.'));
+    let crossBackCm = parseInt(prompt('Informe a medida cava à cava:').replace(',', '.'));
+    let upperArmCm = parseInt(prompt('Informe a circunferência do braço:').replace(',', '.'));
+    let armHoleCm = parseInt(prompt('Informe a medida da cava:').replace(',', '.'));
+
+    let pontos = parseInt(prompt('Informe o número de pontos da sua amostra em 10 cm:').replace(',', '.'));
+    let carreiras = parseInt(prompt('Informe o número de carreiras da sua amostra em 10 cm:').replace(',', '.'));
+
+    let  halfChest = halfChestCm * (pontos/10);
+    let  halfNeck = halfNeckCm * (pontos/10);
+    let  crossBack = crossBackCm * (pontos/10);
+    let  upperArm = upperArmCm * (pontos/10);
+    let  armHole = armHoleCm * (carreiras/10);
+
+
+  let underArm = halfChest - crossBack;
+  let increaseRow = ((halfChest - underArm) - halfNeck)/2;
+
+  if (armHole % increaseRow == 0){
+      let increaseRate = armHole/increaseRow;
+  }
+  else {
+        let fr = parseInt(prompt('Informe a frequência rápida:').replace(',', '.'));
+        let fl = parseInt(prompt('Informe a frequência lenta:').replace(',', '.'));
+        let slowRate = (armHole - (increaseRow * fr))/(fl - fr)
+  }
+
+
+</script>
