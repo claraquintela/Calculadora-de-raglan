@@ -1,0 +1,74 @@
+<meta charset="utf-8">
+<h1>Calculadora e blusa raglan topdown sem costura</h1>
+
+<h3>Informe os dados da sua amostra</h3>
+
+<p class="pontos">
+    <input type="text" id="pontosid" placeholder=" pontos por 10 cm" required="required" name="pontos" />
+    
+</p>
+<p class="carreiras">
+    <input type="text" id="carreirasid" placeholder=" carreiras por 10 cm" name="carreiras" />
+
+</p>
+
+<p class="submit">
+    <input type="submit" onclick="Enviar();" value="Enviar" />
+</p>
+
+<h3>Informe suas medidas</h3>
+
+    <p class="halfChestCm">
+        <input type="text" id="halfChestCmid" placeholder=" Campo obrigatório*" required="required" name="halfChestCm" />
+        <label for="halfChestCm">Informe a metade da circunferência do busto</label>
+    </p>
+    <p class="halfNeckCm">
+        <input type="text" id="halfNeckCmid" placeholder=" Campo obrigatório*" required="required" name="halfNeckCm" />
+        <label for="halfNeckCm">Informe a metade da circunferência do pescoço</label>
+    </p>
+    <p class="crossBackCm">
+        <input type="text" id="crossBackCmid" placeholder=" Campo obrigatório*" required="required" name="crossBackCm" />
+        <label for="crossBackCm">Informe a medida cava à cava</label>
+
+    </p>
+    <p class="upperArmCm">
+        <input type="text" id="upperArmCmid" placeholder=" Campo obrigatório*" required="required" name="upperArmCm" />
+        <label for="upperArmCm">Informe a circunferência do braço</label>
+    </p>
+    <p class="armHoleCm">
+        <input type="text" id="armHoleCmid" placeholder=" Campo obrigatório*" required="required" name="armHoleCm" />
+        <label for="armHoleCm">Informe a medida da cava</label>
+
+    </p>
+
+
+
+<p class="submit">
+    <input type="submit" onclick="Enviar();" value="Enviar" />
+</p>
+
+
+<script>
+    let halfChestCm = parseInt(prompt('Informe a metade da circunferência do busto:').replace(',', '.'));
+    let halfNeckCm = parseInt(prompt('Informe a metade da circunferência do pescoço:').replace(',', '.'));
+    let crossBackCm = parseInt(prompt('Informe a medida cava à cava:').replace(',', '.'));
+    let upperArmCm = parseInt(prompt('Informe a circunferência do braço:').replace(',', '.'));
+    let armHoleCm = parseInt(prompt('Informe a medida da cava:').replace(',', '.'));
+    let pontos = parseInt(prompt('Informe o número de pontos da sua amostra em 10 cm:').replace(',', '.'));
+    let carreiras = parseInt(prompt('Informe o número de carreiras da sua amostra em 10 cm:').replace(',', '.'));
+    let halfChest = halfChestCm * (pontos / 10);
+    let halfNeck = halfNeckCm * (pontos / 10);
+    let crossBack = crossBackCm * (pontos / 10);
+    let upperArm = upperArmCm * (pontos / 10);
+    let armHole = armHoleCm * (carreiras / 10);
+    let underArm = halfChest - crossBack;
+    let increaseRow = ((halfChest - underArm) - halfNeck) / 2;
+    if (armHole % increaseRow == 0) {
+        let increaseRate = armHole / increaseRow;
+    }
+    else {
+        let fr = parseInt(prompt('Informe a frequência rápida:').replace(',', '.'));
+        let fl = parseInt(prompt('Informe a frequência lenta:').replace(',', '.'));
+        let slowRate = (armHole - (increaseRow * fr)) / (fl - fr)
+    }
+</script>
