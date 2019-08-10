@@ -19,25 +19,25 @@
 <h3>Informe suas medidas</h3>
 
     <p class="halfChestCm">
-        <input type="text" id="halfChestCmid" placeholder=" Campo obrigatório*" required="required" name="halfChestCm" />
-        <label for="halfChestCm">Informe a metade da circunferência do busto</label>
+        <input type="text" id="halfChestCmid" placeholder=" Campo obrigatório* " required="required" name="halfChestCm" />
+        <label for="halfChestCm">Informe a metade da circunferência do busto (cm. Exemplo: 100)</label>
     </p>
     <p class="halfNeckCm">
         <input type="text" id="halfNeckCmid" placeholder=" Campo obrigatório*" required="required" name="halfNeckCm" />
-        <label for="halfNeckCm">Informe a metade da circunferência do pescoço</label>
+        <label for="halfNeckCm">Informe a metade da circunferência do pescoço (cm. Exemplo: 18)</label>
     </p>
     <p class="crossBackCm">
         <input type="text" id="crossBackCmid" placeholder=" Campo obrigatório*" required="required" name="crossBackCm" />
-        <label for="crossBackCm">Informe a medida cava à cava</label>
+        <label for="crossBackCm">Informe a medida cava à cava (cm. Exemplo: 34.5)</label>
 
     </p>
     <p class="upperArmCm">
         <input type="text" id="upperArmCmid" placeholder=" Campo obrigatório*" required="required" name="upperArmCm" />
-        <label for="upperArmCm">Informe a circunferência do braço</label>
+        <label for="upperArmCm">Informe a circunferência do braço (cm. Exemplo: 30.7)</label>
     </p>
     <p class="armHoleCm">
         <input type="text" id="armHoleCmid" placeholder=" Campo obrigatório*" required="required" name="armHoleCm" />
-        <label for="armHoleCm">Informe a medida da cava</label>
+        <label for="armHoleCm">Informe a medida da cava (cm. Exemplo: 20.5)</label>
 
     </p>
 
@@ -49,13 +49,20 @@
 
 
 <script>
-    let halfChestCm = parseInt(prompt('Informe a metade da circunferência do busto:').replace(',', '.'));
-    let halfNeckCm = parseInt(prompt('Informe a metade da circunferência do pescoço:').replace(',', '.'));
-    let crossBackCm = parseInt(prompt('Informe a medida cava à cava:').replace(',', '.'));
-    let upperArmCm = parseInt(prompt('Informe a circunferência do braço:').replace(',', '.'));
-    let armHoleCm = parseInt(prompt('Informe a medida da cava:').replace(',', '.'));
-    let pontos = parseInt(prompt('Informe o número de pontos da sua amostra em 10 cm:').replace(',', '.'));
-    let carreiras = parseInt(prompt('Informe o número de carreiras da sua amostra em 10 cm:').replace(',', '.'));
+
+    //dados da amostra
+    let pontos = document.querySelector(".pontos").replace(',', '.'));
+    let carreiras = document.querySelector(".carreiras").replace(',', '.'));
+
+    // medidas corporais
+    let halfChestCm = document.querySelector(".halfChestCm").replace(',', '.'));
+    let halfNeckCm = document.querySelector(".halfNeckCm").replace(',', '.'));
+    let crossBackCm = document.querySelector(".crossBackCm").replace(',', '.'));
+    let upperArmCm = document.querySelector(".upperArmCm").replace(',', '.'));
+    let armHoleCm = document.querySelector(".armHoleCm").replace(',', '.'));
+
+
+
     let halfChest = halfChestCm * (pontos / 10);
     let halfNeck = halfNeckCm * (pontos / 10);
     let crossBack = crossBackCm * (pontos / 10);
@@ -63,6 +70,8 @@
     let armHole = armHoleCm * (carreiras / 10);
     let underArm = halfChest - crossBack;
     let increaseRow = ((halfChest - underArm) - halfNeck) / 2;
+
+    
     if (armHole % increaseRow == 0) {
         let increaseRate = armHole / increaseRow;
     }
