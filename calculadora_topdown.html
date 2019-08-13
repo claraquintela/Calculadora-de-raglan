@@ -4,11 +4,13 @@
 <h3>Informe os dados da sua amostra</h3>
 
 <p class="pontos">
-    <input type="text" id="pontosid" placeholder=" pontos por 10 cm" required="required" name="pontos" />
+    <input type="text" id="pontosid" placeholder=" Campo obrigatório* " required="required" name="pontos" />
+    <label for="pontosid">Número de pontos em 10 cm. Exemplo: 20</label>
     
 </p>
 <p class="carreiras">
-    <input type="text" id="carreirasid" placeholder=" carreiras por 10 cm" name="carreiras" />
+    <input type="text" id="carreirasid" placeholder=" Campo obrigatório* " name="carreiras" />
+    <label for="carreirasid">Número de carreiras em 10 cm. Exemplo: 28</label>
 
 </p>
 
@@ -20,24 +22,24 @@
 
     <p class="halfChestCm">
         <input type="text" id="halfChestCmid" placeholder=" Campo obrigatório* " required="required" name="halfChestCm" />
-        <label for="halfChestCm">Informe a metade da circunferência do busto (cm. Exemplo: 100)</label>
+        <label for="halfChestCm">Informe a metade da circunferência do busto em cm. (Exemplo: 50)</label>
     </p>
     <p class="halfNeckCm">
         <input type="text" id="halfNeckCmid" placeholder=" Campo obrigatório*" required="required" name="halfNeckCm" />
-        <label for="halfNeckCm">Informe a metade da circunferência do pescoço (cm. Exemplo: 18)</label>
+        <label for="halfNeckCm">Informe a metade da circunferência do pescoço em cm. (Exemplo: 18)</label>
     </p>
     <p class="crossBackCm">
         <input type="text" id="crossBackCmid" placeholder=" Campo obrigatório*" required="required" name="crossBackCm" />
-        <label for="crossBackCm">Informe a medida cava à cava (cm. Exemplo: 34.5)</label>
+        <label for="crossBackCm">Informe a medida cava à cava em cm. (Exemplo: 34.5)</label>
 
     </p>
     <p class="upperArmCm">
         <input type="text" id="upperArmCmid" placeholder=" Campo obrigatório*" required="required" name="upperArmCm" />
-        <label for="upperArmCm">Informe a circunferência do braço (cm. Exemplo: 30.7)</label>
+        <label for="upperArmCm">Informe a circunferência do braço em cm. ( Exemplo: 30.75)</label>
     </p>
     <p class="armHoleCm">
         <input type="text" id="armHoleCmid" placeholder=" Campo obrigatório*" required="required" name="armHoleCm" />
-        <label for="armHoleCm">Informe a medida da cava (cm. Exemplo: 20.5)</label>
+        <label for="armHoleCm">Informe a medida da cava em cm. (Exemplo: 20.5)</label>
 
     </p>
 
@@ -51,27 +53,34 @@
 <script>
 
     //dados da amostra
-    let pontos = document.querySelector(".pontos").replace(',', '.'));
-    let carreiras = document.querySelector(".carreiras").replace(',', '.'));
+    let pontos = document.querySelector(".pontos").replace(',', '.');
+    let carreiras = document.querySelector(".carreiras").replace(',', '.');
 
     // medidas corporais
-    let halfChestCm = document.querySelector(".halfChestCm").replace(',', '.'));
-    let halfNeckCm = document.querySelector(".halfNeckCm").replace(',', '.'));
-    let crossBackCm = document.querySelector(".crossBackCm").replace(',', '.'));
-    let upperArmCm = document.querySelector(".upperArmCm").replace(',', '.'));
-    let armHoleCm = document.querySelector(".armHoleCm").replace(',', '.'));
+    let halfChestCm = document.querySelector(".halfChestCm").replace(',', '.');
+    let halfNeckCm = document.querySelector(".halfNeckCm").replace(',', '.');
+    let crossBackCm = document.querySelector(".crossBackCm").replace(',', '.');
+    let upperArmCm = document.querySelector(".upperArmCm").replace(',', '.');
+    let armHoleCm = document.querySelector(".armHoleCm").replace(',', '.');
 
 
+    //Transformando tudo para pontos e carreiras
+    let halfChest = Math.round(halfChestCm * (pontos / 10));
+    let halfNeck = Math.round(halfNeckCm * (pontos / 10));
+    let crossBack = Math.round(crossBackCm * (pontos / 10));
+    let upperArm = Math.round(upperArmCm * (pontos / 10));
+    let armHole = Math.round(armHoleCm * (carreiras / 10));
 
-    let halfChest = halfChestCm * (pontos / 10);
-    let halfNeck = halfNeckCm * (pontos / 10);
-    let crossBack = crossBackCm * (pontos / 10);
-    let upperArm = upperArmCm * (pontos / 10);
-    let armHole = armHoleCm * (carreiras / 10);
+
+    //Começando os cálculos do raglan
+
+    // cálculo 1: underarm
     let underArm = halfChest - crossBack;
+
+    // cálculo 2: carreiras de aumento
     let increaseRow = ((halfChest - underArm) - halfNeck) / 2;
 
-    
+    // cálculo 3: frequência de aumentos
     if (armHole % increaseRow == 0) {
         let increaseRate = armHole / increaseRow;
     }
@@ -80,4 +89,14 @@
         let fl = parseInt(prompt('Informe a frequência lenta:').replace(',', '.'));
         let slowRate = (armHole - (increaseRow * fr)) / (fl - fr)
     }
+
+    // cálculo 4: pontos iniciais a manga
+    let upperArmIncial = ((upperArm - underArm) /2)/increaseRow;
+
+    // cáculo 5: pontos iniciais total
+    let pontosIniciais = (halfNeck * 2) + (upperArmIncial * 2);
+
+
+    document.write("Using your favourite method, cast on " + pontosIniciais + " stitches. " + "Knit " + halfNeck + ", place a marker (hereafter pm), " + upperArmIncial + ", pm")
+
 </script>
